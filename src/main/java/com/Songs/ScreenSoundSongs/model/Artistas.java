@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,13 +25,14 @@ public class Artistas {
 	
 	@Column(unique = true)
 	private String nome;
+	
+	@Enumerated(EnumType.STRING)
 	private TipoArtista tipoArtista;
 	
-	 @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Musicas> musicas = new ArrayList<>();
 	
-	public Artistas() {
-		
+	public Artistas() {	
 	}
 
 	public Artistas(String nome, TipoArtista tipoArtista) {
